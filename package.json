@@ -1,0 +1,27 @@
+{
+  "name": "warehouse_app",
+  "version": "1.0.0",
+  "description": "\"# warehouse_app\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deniso95/warehouse_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deniso95/warehouse_app/issues"
+  },
+  "homepage": "https://github.com/deniso95/warehouse_app#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.6.4",
+    "nodemon": "^1.11.0"
+  }
+}
