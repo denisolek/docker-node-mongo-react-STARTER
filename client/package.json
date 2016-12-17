@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build",
-    "build": "webpack -d && xcopy \"src/index.html\" \"dist/\" /F /Y && webpack-dev-server --content-base src/ --inline --hot --history-api-fallback",
-    "build:prod": "webpack -p && xcopy \"src/index.html\" \"dist/\" /F /Y"
+    "build": "webpack -d && cp 'src/index.html' 'dist' && webpack-dev-server --content-base src/ --inline --hot --history-api-fallback --port 4000",
+    "build:prod": "webpack -p && cp 'src/index.html' 'dist'"
   },
   "author": "",
   "license": "ISC",
