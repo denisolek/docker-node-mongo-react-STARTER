@@ -31,4 +31,4 @@ public:
 mongodb:
   image: mongo
   ports:
-      - "27017:27017"s
+      - "27017:27017"
