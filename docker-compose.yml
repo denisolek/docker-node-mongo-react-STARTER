@@ -8,6 +8,8 @@ server:
     PORT: 3000
   ports:
     - "3000:3000"
+  links:
+    - mongodb
 
 frontend:
   image: node:7
@@ -19,9 +21,14 @@ frontend:
     - "4000:4000"
 
 public:
-    image: nginx
-    ports:
-        - "8080:8080"
-    volumes:
-        - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-        - ./frontend/dist:/usr/share/nginx/html
+  image: nginx
+  ports:
+      - "8080:8080"
+  volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./frontend/dist:/usr/share/nginx/html
+
+mongodb:
+  image: mongo
+  ports:
+      - "27017:27017"s
