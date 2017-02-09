@@ -18,11 +18,11 @@ router.get('/items', function(req, res, next) {
 });
 
 // Get single item
-router.get('/item/:id', function(req, res, next) {
+router.get('/items/:id', function(req, res, next) {
   var _id = req.params.id;
   Item.findById(_id, function(err, data) {
     if (err) {
-      res.send(err);
+      res.status(404).send();
     } else {
       res.json(data);
     }
@@ -30,7 +30,8 @@ router.get('/item/:id', function(req, res, next) {
 });
 
 // Add new item
-router.post('/item', function(req, res, next) {
+router.post('/items', function(req, res, next) {
+  req.accepts('application/json');
   var item = {
     name: req.body.name,
     category: req.body.category,
@@ -40,31 +41,32 @@ router.post('/item', function(req, res, next) {
   var data = new Item(item);
   data.save(function(err) {
     if (err) {
-      res.send(err);
+      res.status(500).send();
     } else {
-      res.sendStatus(200);
+      res.status(201).send(data._id);
     }
   });
 });
 
 // Delete item
-router.delete('/item/:id', function(req, res, next) {
+router.delete('/items/:id', function(req, res, next) {
   var _id = req.params.id;
   Item.findByIdAndRemove(_id, function(err, data) {
     if (err) {
-      res.send(err);
+      res.status(404).send();
     } else {
-      res.status(200).json(data);
+      res.status(204).send();
     }
   });
 });
 
 // Update item
-router.put('/item/:id', function(req, res, next) {
+router.put('/items/:id', function(req, res, next) {
+  req.accepts('application/json');
   var _id = req.params.id;
   Item.findById(_id, function(err, data) {
     if (err) {
-      res.send(err);
+      res.status(404).send();
     } else {
       data.name = req.body.name;
       data.category = req.body.category;

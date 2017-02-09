@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build",
-    "build": "webpack -d && cp 'src/index.html' 'dist' && webpack-dev-server --content-base src/ --inline --hot --history-api-fallback --port 4000",
-    "build:prod": "webpack -p && cp 'src/index.html' 'dist'"
+    "build": "webpack -d && cp 'src/index.html' 'dist' && webpack-dev-server --content-base src/ --inline --hot --history-api-fallback --port 5000",
+    "build:prod": "webpack -p && cp 'src/index.html' 'dist'",
+    "webpack": "webpack --watch"
   },
   "author": "",
   "license": "ISC",

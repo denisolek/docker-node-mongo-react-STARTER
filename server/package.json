@@ -4,7 +4,7 @@
   "description": "\"# warehouse_app\"",
   "main": "index.js",
   "scripts": {
-    "backend": "nodemon server"
+    "backend": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "express": "^4.14.0",
     "mongodb": "^2.2.11",
     "mongoose": "^4.6.4",
+    "morgan": "^1.7.0",
     "nodemon": "^1.11.0",
     "winston": "^2.3.0"
   }
