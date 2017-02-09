@@ -10,8 +10,8 @@ export class NewItem extends React.Component {
   render() {
     return (
         <div>
-            <h3>Dodaj przedmiot</h3>
-            <button onClick={this.onNavigateHome} className="btn btn-primary">Stan magazynu</button>
+            <h3>Add item</h3>
+            <button onClick={this.onNavigateHome} className="btn btn-primary">Store</button>
         </div>
     );
   }

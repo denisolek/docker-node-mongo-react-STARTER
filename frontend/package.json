@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build",
-    "build": "webpack -d && cp 'src/index.html' 'dist' && webpack-dev-server --content-base src/ --inline --hot --history-api-fallback --port 5000",
-    "build:prod": "webpack -p && cp 'src/index.html' 'dist'",
+    "start": "webpack-dev-server --host 0.0.0.0 --port 4000 --inline --hot --watch --content-base ../public",
     "webpack": "webpack --watch"
   },
   "author": "",
