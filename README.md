@@ -6,9 +6,10 @@ Under the hood
 - ExpressJS
 - MongoDB
 - Mongoose
+- PassportJS
 - ReactJS
 - Webpack
-- Nginx (serving static content compiled by react)
+- Nginx
 - Docker
 - docker-compose
 
