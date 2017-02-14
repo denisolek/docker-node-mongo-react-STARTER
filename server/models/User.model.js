@@ -3,28 +3,31 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcryptjs');
 
 var UserSchema = new Schema({
-  username: {
-    type: String,
-    unique: true,
-    required: true
+
+  local: {
+    username: {type: String},
+    password: {type: String}
   },
-  password: {
-    type: String,
-    required: true
+  facebook: {
+    id: {type: String},
+    token: {type: String},
+    email: {type: String},
+    name: {type: String}
   }
+
 });
 
 
 UserSchema.pre('save', function(callback) {
   var user = this;
-  if (!user.isModified('password')) return callback();
+  if (!user.isModified('local.password')) return callback();
 
   bcrypt.genSalt(5, function(err, salt) {
     if (err) return callback(err);
 
-    bcrypt.hash(user.password, salt, function(err, hash) {
+    bcrypt.hash(user.local.password, salt, function(err, hash) {
       if (err) return callback(err);
-      user.password = hash;
+      user.local.password = hash;
       callback();
     })
   })
@@ -32,7 +35,7 @@ UserSchema.pre('save', function(callback) {
 
 UserSchema.methods = {
   validPassword: function(plainPassword) {
-    return bcrypt.compareSync(plainPassword, this.password)
+    return bcrypt.compareSync(plainPassword, this.local.password)
   }
 }
 

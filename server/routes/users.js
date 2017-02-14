@@ -15,27 +15,38 @@ mongoose.connect('mongodb://mongodb:27017');
 router.post('/token', passport.authenticate('local', {session:false}), function(req, res, next) {
   var tmpUser = {
     id: req.user._id,
-    username: req.user.username
+    username: req.user.local.username
   }
   var token = jwt.encode(tmpUser, config.tokenSecret);
   res.json({ token: token });
 })
 
 
-// Add new user [TMP ROUTE]
+// Get all items [TMP ROUTE]
+router.get('/', function(req, res, next) {
+  User.find()
+    .then(function(data) {
+      res.json(data);
+    });
+});
+
+// Add new user
 router.post('/', function(req, res, next) {
   req.accepts('application/json');
-  var user = {
-    username: req.body.username,
-    password: req.body.password
-  };
-
-  var data = new User(user);
-  data.save(function(err) {
-    if (err) {
-      res.status(500).send();
+  User.findOne({'local.username':req.body.username}, function(err, user) {
+    if (user) {
+      res.status(400).send('Username already in use.');
     } else {
-      res.status(201).send(data._id);
+      var newUser = new User();
+      newUser.local.password = req.body.password;
+      newUser.local.username = req.body.username;
+      newUser.save(function(err) {
+        if (err) {
+          res.status(500).send();
+        } else {
+          res.status(201).send(newUser._id);
+        }
+      });
     }
   });
 });
