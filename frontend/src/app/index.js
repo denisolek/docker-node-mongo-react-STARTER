@@ -5,6 +5,7 @@ import {Router, Route, browserHistory} from 'react-router';
 import {Root} from './components/Root';
 import {Home} from './components/Home';
 import {NewItem} from './components/NewItem';
+import {Login} from './components/Login';
 
 class App extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class App extends React.Component {
             <Route path={'/'} component={Root}>
                 <Route path={'/newItem'} component={NewItem}/>
                 <Route path={'/home'} component={Home}/>
+                <Route path={'/login'} component={Login}/>
             </Route>
             <Route path={'/home'} component={Home}/>
         </Router>
