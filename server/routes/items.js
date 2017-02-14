@@ -5,10 +5,8 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Item = require('../models/Item.model');
 
-mongoose.connect('mongodb://mongodb:27017');
-
 // Get all items
-router.get('/items', function(req, res, next) {
+router.get('/', function(req, res, next) {
   Item.find()
     .then(function(data) {
       res.json(data);
@@ -16,7 +14,7 @@ router.get('/items', function(req, res, next) {
 });
 
 // Get single item
-router.get('/items/:id', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
   var _id = req.params.id;
   Item.findById(_id, function(err, data) {
     if (err) {
@@ -28,7 +26,7 @@ router.get('/items/:id', function(req, res, next) {
 });
 
 // Add new item
-router.post('/items', function(req, res, next) {
+router.post('/', function(req, res, next) {
   req.accepts('application/json');
   var item = {
     name: req.body.name,
@@ -47,7 +45,7 @@ router.post('/items', function(req, res, next) {
 });
 
 // Delete item
-router.delete('/items/:id', function(req, res, next) {
+router.delete('/:id', function(req, res, next) {
   var _id = req.params.id;
   Item.findByIdAndRemove(_id, function(err, data) {
     if (err) {
@@ -59,7 +57,7 @@ router.delete('/items/:id', function(req, res, next) {
 });
 
 // Update item
-router.put('/items/:id', function(req, res, next) {
+router.put('/:id', function(req, res, next) {
   req.accepts('application/json');
   var _id = req.params.id;
   Item.findById(_id, function(err, data) {

@@ -30,4 +30,10 @@ UserSchema.pre('save', function(callback) {
   })
 })
 
+UserSchema.methods = {
+  validPassword: function(plainPassword) {
+    return bcrypt.compareSync(plainPassword, this.password)
+  }
+}
+
 module.exports = mongoose.model('User', UserSchema);

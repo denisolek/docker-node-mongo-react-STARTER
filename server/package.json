@@ -21,10 +21,13 @@
     "body-parser": "^1.15.2",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
+    "jwt-simple": "^0.5.1",
     "mongodb": "^2.2.11",
     "mongoose": "^4.6.4",
     "morgan": "^1.7.0",
     "nodemon": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "winston": "^2.3.0"
   }
 }
