@@ -30,6 +30,18 @@ router.get('/', function(req, res, next) {
     });
 });
 
+// Facebook Auth
+router.get('/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+router.get('/facebook/callback', passport.authenticate('facebook'), function(req, res, next) {
+    var tmpUser = {
+      id: req.user._id,
+      name: req.user.facebook.name
+    }
+    var token = jwt.encode(tmpUser, config.tokenSecret);
+    res.json({ token: token });
+  });
+
 // Add new user
 router.post('/', function(req, res, next) {
   req.accepts('application/json');
